@@ -30,9 +30,10 @@ public class ItemGun extends ItemBase {
         	{
         		player.inventory.consumeInventoryItem(this.AMMO_TYPE);
         	}
+        	
             world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-            if (!world.isRemote)
+            if (!world.isRemote) // if server world
             {
                 world.spawnEntityInWorld(new EntityBullet(world, player));
             }

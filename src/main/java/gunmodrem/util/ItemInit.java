@@ -27,6 +27,7 @@ public class ItemInit
 	{
 		for (Item i : itemList)
 		{
+			System.out.println(Reference.MODID + ": Registering " + i.getUnlocalizedName());
 			GameRegistry.registerItem(i,  i.getUnlocalizedName(), null);//GameRegistry.registerItem(i,  i.getUnlocalizedName().substring(5), null);
 		}
 	}

@@ -10,16 +10,20 @@ import net.minecraft.item.Item;
 
 public class ItemBase extends Item 
 {
+	private String localTextureName;
+	
 	public ItemBase(String name)
 	{
 		setCreativeTab(CreativeTabs.tabMisc);
 		setUnlocalizedName(name);
+		localTextureName = Reference.MODID + ":" + this.getUnlocalizedName().substring(5); // item.ammo_pistol
+		setTextureName(localTextureName);
 		ItemInit.itemList.add(this);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register)
 	{
-		this.itemIcon = register.registerIcon(Reference.MODID + ":" + this.getUnlocalizedName());
+		this.itemIcon = register.registerIcon(localTextureName);
 	}
 }
