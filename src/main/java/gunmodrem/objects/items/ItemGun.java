@@ -22,6 +22,7 @@ public class ItemGun extends ItemBase {
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
+    
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
         if (player.capabilities.isCreativeMode || player.inventory.hasItem(this.AMMO_TYPE))
