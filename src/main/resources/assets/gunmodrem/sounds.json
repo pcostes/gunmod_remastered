@@ -1,0 +1,6 @@
+{
+	"gun_pistol.fire": 
+	{
+		"category": "ambient",
+		"sounds": [{"name": "gun_pistol","stream": false}]}
+} 

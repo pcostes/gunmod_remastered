@@ -10,20 +10,20 @@ import net.minecraft.item.Item;
 
 public class ItemBase extends Item 
 {
-	private String localTextureName;
+	protected String assetName;
 	
 	public ItemBase(String name)
 	{
 		setCreativeTab(CreativeTabs.tabMisc);
 		setUnlocalizedName(name);
-		localTextureName = Reference.MODID + ":" + this.getUnlocalizedName().substring(5); // item.ammo_pistol
-		setTextureName(localTextureName);
+		assetName = Reference.MODID + ":" + this.getUnlocalizedName().substring(5); // item.ammo_pistol
+		setTextureName(assetName);
 		ItemInit.itemList.add(this);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register)
 	{
-		this.itemIcon = register.registerIcon(localTextureName);
+		this.itemIcon = register.registerIcon(assetName);
 	}
 }

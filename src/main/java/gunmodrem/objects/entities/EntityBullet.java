@@ -1,5 +1,6 @@
 package gunmodrem.objects.entities;
 
+import gunmodrem.objects.items.ItemAmmo;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -7,10 +8,13 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class EntityBullet extends EntityThrowable {
+	public final ItemAmmo AMMO_TYPE;
 
-	public EntityBullet(World world, EntityLivingBase entity)
+	
+	public EntityBullet(World world, EntityLivingBase entity, ItemAmmo ammoType)
     {
         super(world, entity);
+        AMMO_TYPE = ammoType;
     }
 	
 	protected void onImpact(MovingObjectPosition pos)
@@ -19,7 +23,7 @@ public class EntityBullet extends EntityThrowable {
 		this.worldObj.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
         if (pos.entityHit != null)
         {
-            pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 10); // change to class 
+            pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), AMMO_TYPE.getDamage()); // change to class 
         }
 
         for (int i = 0; i < 8; i++)
