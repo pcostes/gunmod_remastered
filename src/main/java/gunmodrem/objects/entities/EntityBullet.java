@@ -12,6 +12,12 @@ import net.minecraft.world.World;
 public class EntityBullet extends EntityThrowable implements IProjectile {
 	public final ItemAmmo AMMO_TYPE;
 	
+	public EntityBullet(World world)
+	{
+		super(world);
+		AMMO_TYPE = new ItemAmmo();
+	}
+	
 	public EntityBullet(World world, ItemAmmo ammoType)
 	{
 		super(world);
