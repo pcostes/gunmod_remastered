@@ -1,0 +1,14 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "gm:items/gun_pistol"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-90, -90, -90]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-90, 90, 90]
+		}
+	}
+}

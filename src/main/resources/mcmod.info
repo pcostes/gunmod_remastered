@@ -1,14 +1,14 @@
 [
 {
-  "modid": "gunmodrem",
-  "name": "GunMod Remastered",
-  "description": "Gunmod Remastered, with lots of great guns",
-  "version": "0.1",
-  "mcversion": "1.7.10",
+  "modid": "examplemod",
+  "name": "Example Mod",
+  "description": "This mod adds GUNS GUNS GUNS!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["Bro"],
-  "credits": "Bros for coding the Mod. Forge for making mods possible. BBC RemArc site for providing sound effects.",
+  "authorList": ["ExampleDude"],
+  "credits": "The Forge and FML guys, for making this example",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
