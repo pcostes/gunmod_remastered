@@ -24,4 +24,5 @@ public class ItemInit {
 	
 	// ITEMS
 	public static final Item ITEM_JAR = new ItemJar("item_jar");
+	public static final Item ITEM_BOTTLED_BEE = new ItemBase("item_bottled_bee");
 }
