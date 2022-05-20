@@ -27,6 +27,6 @@ usernamecache.json
 logs/
 crash-reports/
 *.launch
-
+.settings
 #minecraft
 minecraft

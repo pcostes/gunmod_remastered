@@ -3,14 +3,15 @@ package gunmodrem.objects.items;
 import gunmodrem.objects.entities.EntityBullet;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemGun extends ItemBase {
 	//private static final String __OBFID = "CL_00000069"; -- Don't know what this does
-	public final ItemAmmo AMMO_TYPE;
+	public final Item AMMO_TYPE;
 
-    public ItemGun(String name, ItemAmmo ammoType)
+    public ItemGun(String name, Item ammoType)
     {
     	super(name);
         this.maxStackSize = 1;
@@ -31,11 +32,10 @@ public class ItemGun extends ItemBase {
         		player.inventory.consumeInventoryItem(this.AMMO_TYPE);
         	}
         	
-            world.playSoundAtEntity(player, assetName, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
             if (!world.isRemote) // if server world
             {
-                world.spawnEntityInWorld(new EntityBullet(world, player, AMMO_TYPE));
+                world.spawnEntityInWorld(new EntityBullet(world, player));
             }
         }
 

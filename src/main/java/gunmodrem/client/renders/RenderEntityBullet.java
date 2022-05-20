@@ -3,13 +3,14 @@ package gunmodrem.client.renders;
 import org.lwjgl.opengl.GL11;
 
 import gunmodrem.client.model.ModelEntityBullet;
+import gunmodrem.util.Reference;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderEntityBullet extends Render {
-    private static final ResourceLocation texture = new ResourceLocation("gunmodrem", "textures/entities/bullet_pistol.png");
+    private static final ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/entities/bullet_pistol.png");
     private ModelBase model;
  
     public RenderEntityBullet()

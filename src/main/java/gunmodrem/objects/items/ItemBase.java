@@ -8,22 +8,21 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
+
 public class ItemBase extends Item 
 {
-	protected String assetName;
 	
 	public ItemBase(String name)
 	{
 		setCreativeTab(CreativeTabs.tabMisc);
 		setUnlocalizedName(name);
-		assetName = Reference.MODID + ":" + this.getUnlocalizedName().substring(5); // item.ammo_pistol
-		setTextureName(assetName);
+		setTextureName(Reference.MODID + ":" + this.getUnlocalizedName().substring(5));
 		ItemInit.itemList.add(this);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register)
 	{
-		this.itemIcon = register.registerIcon(assetName);
+		this.itemIcon = register.registerIcon(Reference.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}
 }

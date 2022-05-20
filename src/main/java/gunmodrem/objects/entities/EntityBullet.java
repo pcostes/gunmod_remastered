@@ -1,6 +1,5 @@
 package gunmodrem.objects.entities;
 
-import gunmodrem.objects.items.ItemAmmo;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -10,30 +9,22 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class EntityBullet extends EntityThrowable implements IProjectile {
-	public final ItemAmmo AMMO_TYPE;
 	
 	public EntityBullet(World world)
 	{
 		super(world);
-		AMMO_TYPE = new ItemAmmo();
 	}
 	
-	public EntityBullet(World world, ItemAmmo ammoType)
-	{
-		super(world);
-		AMMO_TYPE = ammoType;
-	}
 	
-	public EntityBullet(World world, EntityLivingBase entity, ItemAmmo ammoType)
+	public EntityBullet(World world, EntityLivingBase entity)
     {
         super(world, entity);
-        AMMO_TYPE = ammoType;
+
     }
 	
-	public EntityBullet(World world, double x, double y, double z, ItemAmmo ammoType)
+	public EntityBullet(World world, double x, double y, double z)
 	{
 		super(world, x, y, z);
-		AMMO_TYPE = ammoType;
 	}
 	
 	protected void onImpact(MovingObjectPosition pos)
@@ -42,7 +33,7 @@ public class EntityBullet extends EntityThrowable implements IProjectile {
 		this.worldObj.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
         if (pos.entityHit != null)
         {
-            pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), AMMO_TYPE.getDamage()); // change to class 
+            pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 5); // change to class 
         }
 
         for (int i = 0; i < 8; i++)
