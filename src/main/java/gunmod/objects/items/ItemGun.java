@@ -20,7 +20,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.legacydev.MainClient;
 
 public class ItemGun extends ItemBase {
-	boolean canShoot;
+	protected boolean canShoot;
+	protected float bulletSpeed = 4.0F; // speed the bullet travels
+
 	public ItemGun(String name) {
 		super(name);
 		this.canShoot = true;
@@ -35,22 +37,22 @@ public class ItemGun extends ItemBase {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
 		ItemStack gunStack = new ItemStack(this, 1);
-		if (this.canShoot)
-		{
+		//if (this.canShoot)
+		//{
 			Main.logger.info("On item right click made it");
 			playerIn.setActiveHand(handIn);
 			this.canShoot = false;
-			ItemStack ammoStack = ItemStack.EMPTY;
+			ItemStack ammoStack = ItemStack.EMPTY; // new ammoStack that we will fill with ammo by searching
 	        
-	        // If player is not in creative mode, require ammo
+	        // If player is not in creative mode, require ammo and fail if not found
 	        if (!playerIn.capabilities.isCreativeMode)
 	        {
 	        	ammoStack = findAmmo(playerIn);
 	        	if (ammoStack.isEmpty())
 	        	{
-	        		return new ActionResult(EnumActionResult.FAIL, gunStack);
+	        		return new ActionResult<ItemStack>(EnumActionResult.FAIL, gunStack);
 	        	}
-	            ammoStack.shrink(1);
+	            ammoStack.shrink(1); // eventually change to durability hit?
 	            
 	        }
 
@@ -61,10 +63,11 @@ public class ItemGun extends ItemBase {
 	        	this.shootProjectile(worldIn, playerIn);
 	        }
 
-	        playerIn.addStat(StatList.getObjectUseStats(this));
+	        playerIn.addStat(StatList.getObjectUseStats(this)); // what is the purpose of this line
 	        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, gunStack);
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, gunStack);
+		//}
+	        
+		//return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, gunStack);
 		
 		// ammoStack is where ammo is found in the player's inventory, and gunStack is the itemstack that is put into the player's hand after he shoots
         

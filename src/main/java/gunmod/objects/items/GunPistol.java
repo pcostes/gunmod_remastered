@@ -16,6 +16,7 @@ public class GunPistol extends ItemGun {
 	// Constructor
 	public GunPistol(String name) {
 		super(name);
+		this.bulletSpeed = 4.0F;
 	}
 	
 	// Controls which projectile is shot out of gun and how that bullet is shot
@@ -23,8 +24,8 @@ public class GunPistol extends ItemGun {
 	public void shootProjectile(World worldIn, EntityPlayer playerIn)
 	{
 		EntityBullet bullet = new EntityBullet(worldIn, playerIn);
-		bullet.posY += 1.5;
-		bullet.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+		//bullet.posY -= 1.5;
+		bullet.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, bulletSpeed, 1.0F);
         worldIn.spawnEntity(bullet);
 	}
 

@@ -29,13 +29,16 @@ public class EntityBullet extends EntityThrowable {
         {
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 10);
         }
-    	else
+    	else // can't destroy anything harder than an ender chest
 		{
-			this.world.setBlockToAir(result.getBlockPos());
+    		float hardness = world.getBlockState(result.getBlockPos()).getBlockHardness(world, result.getBlockPos());
+    		if (hardness == -1 || hardness < 20F)
+    			this.world.setBlockToAir(result.getBlockPos());
 		}
+    	
         if (!this.world.isRemote)
         {
-            this.world.setEntityState(this, (byte)3);
+            this.world.setEntityState(this, (byte)3); // does nothing?
             this.setDead();
         }
     }
