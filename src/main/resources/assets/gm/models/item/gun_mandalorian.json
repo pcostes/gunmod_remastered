@@ -1,0 +1,6 @@
+{
+	"parent": "gm:item/gun_pistol",
+	"textures": {
+		"layer0": "gm:items/gun_mandalorian"
+	}
+}

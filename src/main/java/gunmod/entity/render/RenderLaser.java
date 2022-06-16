@@ -1,24 +1,23 @@
-package gunmod.entity.renders;
+package gunmod.entity.render;
 
-import gunmod.entity.models.ModelBullet;
-import gunmod.objects.entities.EntityBullet;
+import gunmod.entity.models.ModelLaser;
+import gunmod.objects.entities.EntityLaser;
 import gunmod.util.Reference;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderBullet extends Render<EntityBullet>
+public class RenderLaser extends Render<EntityLaser>
 {
-	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MODID + ":textures/entities/bullet_pistol.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MODID + ":textures/entities/laser.png");
 
-    private final ModelBullet bulletModel = new ModelBullet();
+    private final ModelLaser laserModel = new ModelLaser();
 
-    public RenderBullet(RenderManager renderManagerIn)
+    public RenderLaser(RenderManager renderManagerIn)
     {
         super(renderManagerIn);
     }
@@ -40,19 +39,19 @@ public class RenderBullet extends Render<EntityBullet>
         return p_82400_1_ + p_82400_3_ * f;
     }
 
-    public void doRender(EntityBullet entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityLaser entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         GlStateManager.pushMatrix();
         GlStateManager.disableCull();
         float f = this.getRenderYaw(entity.prevRotationYaw, entity.rotationYaw, partialTicks);
         float f1 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
-        GlStateManager.translate((float)x, (float)y, (float)z);
+        // TODO Somehow access the laser's shooter from here. Its not working for some reason.
+        GlStateManager.translate((float)x, (float)y + 1.62F, (float)z);
         float f2 = 0.0625F;
         GlStateManager.enableRescaleNormal();
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.enableAlpha();
         this.bindEntityTexture(entity);
-        
         
         if (this.renderOutlines)
         {
@@ -60,7 +59,7 @@ public class RenderBullet extends Render<EntityBullet>
             GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
 
-        this.bulletModel.render(entity, 0.0F, 0.0F, 0.0F, f, f1, 0.0625F);
+        this.laserModel.render(entity, 0.0F, 0.0F, 0.0F, f, f1, 0.0625F);
         
         if (this.renderOutlines)
         {
@@ -72,7 +71,7 @@ public class RenderBullet extends Render<EntityBullet>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityBullet entity)
+    protected ResourceLocation getEntityTexture(EntityLaser entity)
     {
         return TEXTURE;
     }

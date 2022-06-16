@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "gm:block_bee_box"},
+        "facing=east": {"model": "gm:block_bee_box", "y": 90},
+        "facing=south": {"model": "gm:block_bee_box", "y": 180},
+        "facing=west": {"model": "gm:block_bee_box", "y": 270}
+    }
+}

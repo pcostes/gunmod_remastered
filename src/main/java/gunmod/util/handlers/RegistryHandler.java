@@ -3,6 +3,7 @@ package gunmod.util.handlers;
 import gunmod.init.BlockInit;
 import gunmod.init.EntityInit;
 import gunmod.init.ItemInit;
+import gunmod.networking.ModPacketHandler;
 import gunmod.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -50,11 +51,13 @@ public class RegistryHandler {
 	public static void preInitRegistries()
 	{
 		EntityInit.registerEntities();
+		RenderHandler.registerEntityRenders();
+		ModPacketHandler.registerMessages();
 	}
 	
 	public static void initRegistries()
 	{
-		RenderHandler.registerEntityRenders();
+		RenderHandler.registerProjectileRenders();
 	}
 	
 	@SubscribeEvent

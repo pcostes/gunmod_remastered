@@ -2,3 +2,9 @@ item.ammo_pistol.name=Pistol Ammo
 item.gun_pistol.name=Pistol
 item.item_jar.name=Jar
 item.item_bottled_bee.name=Bottled Bee
+item.gun_mandalorian.name=Mando Gun
+
+tile.block_bee_box.name=Bee Box
+
+entity.bee.name=Bee
+entity.angry_bee.name=Angry Bee

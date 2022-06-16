@@ -1,17 +1,20 @@
 package gunmod.objects.items;
 
-import gunmod.Main;
 import gunmod.objects.entities.EntityJar;
+import gunmod.util.handlers.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.SPacketParticles;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemJar extends ItemBase {
 
@@ -19,6 +22,8 @@ public class ItemJar extends ItemBase {
 		super(name);
 		this.maxStackSize = 16;
 	}
+	
+	
 	
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
@@ -34,7 +39,7 @@ public class ItemJar extends ItemBase {
         if (!worldIn.isRemote)
         {
             EntityJar entityJar = new EntityJar(worldIn, playerIn);
-            entityJar.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 1.0F); // Velocity is 1.5 before. TEMP COMMENT
+            entityJar.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 1.0F);
             worldIn.spawnEntity(entityJar);
         }
         
