@@ -1,6 +1,6 @@
 package gunmod.networking;
 
-import gunmod.networking.MessageShatterJar.MessageShatterJarHandler;
+import gunmod.networking.MessageParticle.MessageParticleHandler;
 import gunmod.util.Reference;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -11,6 +11,6 @@ public class ModPacketHandler {
 	
 	public static void registerMessages()
 	{
-		ModPacketHandler.INSTANCE.registerMessage(MessageShatterJarHandler.class, MessageShatterJar.class, Reference.packetId + 1, Side.CLIENT);
+		ModPacketHandler.INSTANCE.registerMessage(MessageParticleHandler.class, MessageParticle.class, Reference.packetId++, Side.CLIENT);
 	}
 }

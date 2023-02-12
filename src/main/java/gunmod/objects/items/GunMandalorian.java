@@ -17,7 +17,7 @@ public class GunMandalorian extends SemiAutoGun {
 	protected void shootProjectile(World worldIn, EntityPlayer playerIn) {
 		RayTraceResult result = playerIn.rayTrace(100, 1);
 		EntityLaser laser = new EntityLaser(worldIn, playerIn);
-		laser.shoot(result.getBlockPos(), 4.5F);
+		laser.shoot(result.getBlockPos(), 3.5F); // Speed is 4.5F
 		worldIn.spawnEntity(laser);
 	}
 }

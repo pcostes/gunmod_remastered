@@ -13,6 +13,8 @@ public class Reference {
 	public static final int ENTITY_ANGRY_BEE_ID = 3;
 	
 	public static final int ENTITY_LASER_ID = 4;
+	public static final int ENTITY_BABY_YODA_ID = 5;
+	public static final int ENTITY_W_BIRD_ID = 6;
 	
 	// Updated ids
 	public static int packetId = -1;

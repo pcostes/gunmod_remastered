@@ -2,7 +2,6 @@ package gunmod.entity.render;
 
 import gunmod.entity.models.ModelBee;
 import gunmod.objects.entities.EntityAngryBee;
-import gunmod.objects.entities.EntityBee;
 import gunmod.util.Reference;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

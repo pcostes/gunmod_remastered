@@ -2,7 +2,7 @@ package gunmod.objects.entities;
 
 import gunmod.Main;
 import gunmod.init.ItemInit;
-import gunmod.networking.MessageShatterJar;
+import gunmod.networking.MessageParticle;
 import gunmod.networking.ModPacketHandler;
 import gunmod.util.handlers.PacketHandler;
 import net.minecraft.entity.EntityLivingBase;

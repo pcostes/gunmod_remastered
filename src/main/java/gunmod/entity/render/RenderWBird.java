@@ -1,7 +1,7 @@
 package gunmod.entity.render;
 
-import gunmod.entity.models.ModelLaser;
-import gunmod.objects.entities.EntityLaser;
+import gunmod.entity.models.ModelWBird;
+import gunmod.objects.entities.EntityWBird;
 import gunmod.util.Reference;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -11,13 +11,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderLaser extends Render<EntityLaser>
+public class RenderWBird extends Render<EntityWBird>
 {
-	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MODID + ":textures/entities/laser.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(Reference.MODID + ":textures/entities/w_bird.png");
 
-    private final ModelLaser laserModel = new ModelLaser();
+    private final ModelWBird model = new ModelWBird();
 
-    public RenderLaser(RenderManager renderManagerIn)
+    public RenderWBird(RenderManager renderManagerIn)
     {
         super(renderManagerIn);
     }
@@ -39,29 +39,40 @@ public class RenderLaser extends Render<EntityLaser>
         return p_82400_1_ + p_82400_3_ * f;
     }
 
-    public void doRender(EntityLaser entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityWBird entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
+    	// Stuff i don't understand
         GlStateManager.pushMatrix();
         GlStateManager.disableCull();
+        
+        // Get entity yaw a pitch (currently not used)
         float yaw = this.getRenderYaw(entity.prevRotationYaw, entity.rotationYaw, partialTicks);
         float pitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
-        // TODO Somehow access the laser's shooter from here. Its not working for some reason.
-        GlStateManager.translate((float)x, (float)y + 1.62F, (float)z);
-        float f2 = 0.0625F;
+        
+        
+        // TODO This code is from laser, adjust as needed
+        GlStateManager.translate((float)x, (float)y - 0.185, (float)z);
+        
+        // scaleFactor is never used in rendering but it is available for use when rendering the model
+        float scaleFactor = 0.0625F;
+        
+        // More stuff i don't understand why it is here
         GlStateManager.enableRescaleNormal();
-        GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+        //GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+
+        GlStateManager.scale(0.14, 0.14, 0.14);
         GlStateManager.enableAlpha();
         this.bindEntityTexture(entity);
-        
         if (this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
             GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
-
-        //this.laserModel.render(entity, 0.0F, 0.0F, 0.0F, f, f1, 0.0625F);
-        this.laserModel.render(entity, 0.0F, 0.0F, 0.0F, yaw, pitch, f2);
         
+        // The model is actually rendered here
+        this.model.render(entity, 0.0F, 0.0F, 0.0F, yaw, pitch, scaleFactor);
+        
+        // This code seems to cancel out the properties that were set earlier
         if (this.renderOutlines)
         {
             GlStateManager.disableOutlineMode();
@@ -72,7 +83,7 @@ public class RenderLaser extends Render<EntityLaser>
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityLaser entity)
+    protected ResourceLocation getEntityTexture(EntityWBird entity)
     {
         return TEXTURE;
     }

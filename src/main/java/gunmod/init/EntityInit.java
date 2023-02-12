@@ -2,6 +2,7 @@ package gunmod.init;
 
 import gunmod.Main;
 import gunmod.objects.entities.EntityAngryBee;
+import gunmod.objects.entities.EntityBabyYoda;
 import gunmod.objects.entities.EntityBee;
 import gunmod.objects.entities.EntityBullet;
 import gunmod.objects.entities.EntityJar;
@@ -18,8 +19,10 @@ public class EntityInit {
 	public static void registerEntities()
 	{
 		registerEntity("bullet", EntityBullet.class, Reference.ENTITY_BULLET_ID, 50);
+		//registerEntity("w_bird", EntityWBird.class, Reference.ENTITY_W_BIRD_ID, 50);
 		registerEntityWithEgg("bee", EntityBee.class, Reference.ENTITY_BEE_ID, 50, 8619279, 2039583);
 		registerEntityWithEgg("angry_bee", EntityAngryBee.class, Reference.ENTITY_ANGRY_BEE_ID, 50, 8619279, 12525335);
+		registerEntityWithEgg("baby_yoda", EntityBabyYoda.class, Reference.ENTITY_BABY_YODA_ID, 50, 10390119, 8297573);
 		registerProjectile("jar", Reference.ENTITY_JAR_ID, EntityJar.class, ItemInit.ITEM_JAR);
 		registerEntity("laser", EntityLaser.class, Reference.ENTITY_LASER_ID, 50);
 	}

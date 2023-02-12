@@ -1,15 +1,19 @@
 package gunmod.util.handlers;
 
 import gunmod.entity.render.RenderAngryBee;
+import gunmod.entity.render.RenderBabyYoda;
 import gunmod.entity.render.RenderBee;
 import gunmod.entity.render.RenderBullet;
 import gunmod.entity.render.RenderLaser;
+import gunmod.entity.render.RenderWBird;
 import gunmod.init.ItemInit;
 import gunmod.objects.entities.EntityAngryBee;
+import gunmod.objects.entities.EntityBabyYoda;
 import gunmod.objects.entities.EntityBee;
 import gunmod.objects.entities.EntityBullet;
 import gunmod.objects.entities.EntityJar;
 import gunmod.objects.entities.EntityLaser;
+import gunmod.objects.entities.EntityWBird;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -36,11 +40,27 @@ public class RenderHandler {
 			}
 		});
 		
+		RenderingRegistry.registerEntityRenderingHandler(EntityWBird.class, new IRenderFactory<EntityWBird>()
+		{
+			@Override
+			public Render<? super EntityWBird> createRenderFor(RenderManager manager) {
+				return new RenderWBird(manager);
+			}
+		});
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityBee.class, new IRenderFactory<EntityBee>()
 		{
 			@Override
 			public Render<? super EntityBee> createRenderFor(RenderManager manager) {
 				return new RenderBee(manager);
+			}
+		});
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityBabyYoda.class, new IRenderFactory<EntityBabyYoda>()
+		{
+			@Override
+			public Render<? super EntityBabyYoda> createRenderFor(RenderManager manager) {
+				return new RenderBabyYoda(manager, Minecraft.getMinecraft().getRenderItem());
 			}
 		});
 		

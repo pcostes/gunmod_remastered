@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import gunmod.Main;
+import gunmod.util.VectorMath;
 import gunmod.util.entity.EntityHelper;
-import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -33,7 +33,6 @@ public class EntityLaser extends Entity implements IProjectile {
 	public EntityLaser(World worldIn) {
 		super(worldIn);
 		this.setSize(0.25F, 0.25F);
-		this.rotationYaw = 20;
 	}
 	
 	public EntityLaser(World worldIn, double x, double y, double z)
@@ -44,18 +43,29 @@ public class EntityLaser extends Entity implements IProjectile {
 	
 	public EntityLaser(World worldIn, EntityPlayer thrower)
 	{
-		this(worldIn, thrower.posX, thrower.posY + thrower.getEyeHeight(), thrower.posZ);
+		this(worldIn, thrower.posX, thrower.posY, thrower.posZ);
 		this.shooter = thrower;
+		this.rotationYaw = 90;
+		this.rotationPitch = 270;
 		
 		this.shooterEyeHeight = thrower.getEyeHeight();
+		this.posY += (this.shooter.getEyeHeight() - this.height / 2);
 	}
 
+	@Override
+	public boolean isInRangeToRenderDist(double distance) {
+		if (distance < 140)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 
 	@Override
 	public void shoot(double destX, double destY, double destZ, float speed, float inaccuracy) {
-		
 		Vec3d destination = this.determineDestination(new Vec3d(destX, destY, destZ), 200);
-		if (!(destination == null)) {
+		if (destination != null && this.shooter.isSneaking()) {
 			this.shootTo(destination, speed);
 			return;
 		}
@@ -109,6 +119,12 @@ public class EntityLaser extends Entity implements IProjectile {
 	{
 		Vec3d difference = new Vec3d(destination.x - this.posX, destination.y - this.posY, destination.z - this.posZ);
 		Vec3d normalized = difference.normalize();
+		// TODO CHANGE ROTATION ACCORDING DO NORMALIZED VECTOR
+		
+		double[] rotation = VectorMath.vectorToDegrees(normalized);
+		this.rotationYaw = (float) rotation[0];
+		this.rotationPitch = (float) rotation[1];
+		
 		this.motionX = normalized.x * speed;
 		this.motionY = normalized.y * speed;
 		this.motionZ = normalized.z * speed;

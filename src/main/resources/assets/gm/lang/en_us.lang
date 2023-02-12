@@ -3,8 +3,12 @@ item.gun_pistol.name=Pistol
 item.item_jar.name=Jar
 item.item_bottled_bee.name=Bottled Bee
 item.gun_mandalorian.name=Mando Gun
+item.w_bird_launcher.name=Whistling Bird Launcher
 
 tile.block_bee_box.name=Bee Box
 
 entity.bee.name=Bee
 entity.angry_bee.name=Angry Bee
+entity.baby_yoda.name=Baby Yoda
+entity.laser.name=Laser
+entity.w_bird.name=Whistling Bird
