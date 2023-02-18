@@ -4,7 +4,9 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -59,15 +61,15 @@ public class MessageParticle implements IMessage {
 	public void fromBytes(ByteBuf buf) {
 		// Reads the int back from the buf. Note that if you have multiple values, you
 		// must read in the same order you wrote.
-		buf.readInt();
-		buf.readBoolean();
-		buf.readDouble();
-		buf.readDouble();
-		buf.readDouble();
-		buf.readDouble();
-		buf.readDouble();
-		buf.readDouble();
-		buf.readInt();
+		this.particleID = buf.readInt();
+		this.ignoreRange = buf.readBoolean();
+		this.x = buf.readDouble();
+		this.y = buf.readDouble();
+		this.z = buf.readDouble();
+		this.xSpeed = buf.readDouble();
+		this.ySpeed = buf.readDouble();
+		this.zSpeed = buf.readDouble();
+		this.amount = buf.readInt();
 	}
 
 	// The params of the IMessageHandler are <REQ, REPLY>
@@ -93,9 +95,12 @@ public class MessageParticle implements IMessage {
 			Minecraft.getMinecraft().addScheduledTask(new Runnable() { 
 				@Override
 				public void run() {
-					WorldClient minecraft = Minecraft.getMinecraft().world;
+					WorldClient world = Minecraft.getMinecraft().world;
 					
-					minecraft.spawnParticle(particleType, ignoreRange, (float) x, (float) y, (float) z, xSpeed, ySpeed, zSpeed);
+					for (int i = 0; i < amount; i++)
+					{
+						world.spawnParticle(particleType, ignoreRange, (float) x, (float) y, (float) z, xSpeed, ySpeed, zSpeed);
+					}
 				}
 			});
 			

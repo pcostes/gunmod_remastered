@@ -3,6 +3,7 @@ package gunmod.entity.ai;
 import java.util.List;
 import java.util.Random;
 
+import gunmod.Main;
 import gunmod.entity.enums.BYodaState;
 import gunmod.networking.SenderMethods;
 import gunmod.objects.entities.EntityBabyYoda;
@@ -19,6 +20,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.client.event.sound.SoundEvent;
 
 public class EntityAITakeShinies extends EntityAIBase {
 	
@@ -34,6 +36,7 @@ public class EntityAITakeShinies extends EntityAIBase {
 	
 	@Override
 	public boolean shouldExecute() {
+		
 		if (!this.babyYoda.isTamed() || this.babyYoda.getOwner() == null || this.babyYoda.getState() != BYodaState.NORMAL)
 		{
 			return false;
@@ -76,13 +79,10 @@ public class EntityAITakeShinies extends EntityAIBase {
 					public void onUpdate()
 					{
 						super.onUpdate();
-						if (!this.world.isRemote)
-						{
-							SenderMethods.sendParticlePacket(EnumParticleTypes.SMOKE_NORMAL, false, this.posX, this.posY, this.posZ, (this.rand.nextDouble() * 2) - 0.5, this.rand.nextDouble(), (this.rand.nextDouble() * 2) - 0.5, 1);
-						}
+						SenderMethods.sendParticlePacketToAll(EnumParticleTypes.SMOKE_NORMAL, false, this.posX, this.posY, this.posZ, (this.rand.nextDouble() - 0.5) * 0.1F, (this.rand.nextDouble() - 0.5) * 0.1F, (this.rand.nextDouble() - 0.5) * 0.1F, 1);
 					}
 				};
-				this.babyYoda.world.playSound(this.babyYoda.posX, this.babyYoda.posY, this.babyYoda.posZ, SoundEvents.ENTITY_GHAST_DEATH, SoundCategory.MUSIC, 10, 1, false);
+				this.babyYoda.world.playSound(null, this.babyYoda.posX, this.babyYoda.posY, this.babyYoda.posZ, SoundEvents.ENTITY_GHAST_HURT, SoundCategory.NEUTRAL, 1, 1);
 				entityItem.motionY = 1;
 				entityItem.setPickupDelay(60);
 				this.babyYoda.world.spawnEntity(entityItem);

@@ -2,6 +2,7 @@ package gunmod.objects.entities;
 
 import javax.annotation.Nullable;
 
+import gunmod.Main;
 import gunmod.entity.ai.EntityAITakeShinies;
 import gunmod.entity.ai.EntityAIUseForce;
 import gunmod.entity.enums.BYodaState;
@@ -121,11 +122,11 @@ public class EntityBabyYoda extends EntityTameable
                 // BABY YODA CODE
     			if (this.isSitting())
     			{
-    				this.dataManager.set(STATE, BYodaState.CLOSED.getId());	
+    				this.dataManager.set(STATE, BYodaState.NORMAL.getId());	
     			}
     			else
     			{
-    				this.dataManager.set(STATE, BYodaState.NORMAL.getId());
+    				this.dataManager.set(STATE, BYodaState.CLOSED.getId());
     			}
             }
         }

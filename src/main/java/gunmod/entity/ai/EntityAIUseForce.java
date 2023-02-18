@@ -37,7 +37,7 @@ public class EntityAIUseForce extends EntityAIBase {
 	public void updateTask() {
 		this.timeExecuting++;
 		
-		// If fireball attack is on, then do fireball attack, but only every tenth tickw 
+		// If fireball attack is on, then do fireball attack, but only every tenth tick
 		if (this.doingFireballAttack && this.timeExecuting % 10 == 0)
 		{
 			for (EntityMob target : this.targets)
